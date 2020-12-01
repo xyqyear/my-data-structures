@@ -1,5 +1,6 @@
 #pragma once
-#include "assert.hpp"
+#include <iostream>
+#include <cassert>
 
 template <typename E>
 void swapInArray(E *array, int pos1, int pos2)
@@ -17,7 +18,7 @@ private:
     int maxHeapSize;
     int heapSize;
 
-    // the function that determins if this is a maxHeap or a minHeap
+    // the function that determines if this is a maxHeap or a minHeap
     // equal to 0 means this is a pure virtual function and must be implemented
     virtual bool compare(E a, E b) = 0;
     void siftdown(int pos)
@@ -77,7 +78,7 @@ public:
     }
     void insert(const E &item)
     {
-        assert(heapSize < maxHeapSize, "heap is full");
+        assert(heapSize < maxHeapSize);
         int pos = heapSize++;
         heapElementArray[pos] = item;
 
@@ -91,7 +92,7 @@ public:
     }
     E removeFirst()
     {
-        assert(heapSize > 0, "heap is empty");
+        assert(heapSize > 0);
         E firstElement = heapElementArray[0];
         heapElementArray[0] = heapElementArray[heapSize - 1];
         heapSize--;
