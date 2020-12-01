@@ -1,8 +1,8 @@
 #pragma once
-#include "../assert.hpp"
+#include "assert.hpp"
 
 template <typename E>
-void swapInArray(E* array, int pos1, int pos2)
+void swapInArray(E *array, int pos1, int pos2)
 {
     E temp = array[pos1];
     array[pos1] = array[pos2];
@@ -24,7 +24,7 @@ private:
     {
         if (pos >= heapSize)
             return;
-        while(!isLeaf(pos))
+        while (!isLeaf(pos))
         {
             int smallerOrBiggerChildPos, leftChildPos = this->getLeftChildPos(pos), rightChildPos = this->getRightChildPos(pos);
 
@@ -60,11 +60,11 @@ public:
     }
     inline int getLeftChildPos(int pos)
     {
-        return pos*2 + 1;
+        return pos * 2 + 1;
     }
     inline int getRightChildPos(int pos)
     {
-        return pos*2 + 2;
+        return pos * 2 + 2;
     }
     inline int getParentPos(int pos)
     {
@@ -72,10 +72,10 @@ public:
     }
     void buildHeap()
     {
-        for (int i = heapSize/2-1; i >= 0; i--)
+        for (int i = heapSize / 2 - 1; i >= 0; i--)
             siftdown(i);
     }
-    void insert(const E& item)
+    void insert(const E &item)
     {
         assert(heapSize < maxHeapSize, "heap is full");
         int pos = heapSize++;
@@ -96,6 +96,8 @@ public:
         heapElementArray[0] = heapElementArray[heapSize - 1];
         heapSize--;
         siftdown(0);
+        // debug
+        std::cout << "removed " << firstElement  << "from heap" << std::endl;
         return firstElement;
     }
 };
@@ -104,6 +106,7 @@ template <typename E>
 class MinHeap : public Heap<E>
 {
     using Heap<E>::Heap;
+
 private:
     inline bool compare(E a, E b)
     {
@@ -116,6 +119,7 @@ template <typename E>
 class MinPointerHeap : public Heap<E>
 {
     using Heap<E>::Heap;
+
 private:
     inline bool compare(E a, E b)
     {
@@ -127,6 +131,7 @@ template <typename E>
 class MaxHeap : public Heap<E>
 {
     using Heap<E>::Heap;
+
 private:
     inline bool compare(E a, E b)
     {
@@ -138,6 +143,7 @@ template <typename E>
 class MaxPointerHeap : public Heap<E>
 {
     using Heap<E>::Heap;
+
 private:
     inline bool compare(E a, E b)
     {
