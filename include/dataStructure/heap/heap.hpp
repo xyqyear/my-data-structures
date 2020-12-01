@@ -98,7 +98,7 @@ public:
         heapSize--;
         siftdown(0);
         // debug
-        std::cout << "removed " << firstElement  << "from heap" << std::endl;
+        std::cout << "removed " << firstElement->getKey()  << " from heap" << std::endl;
         return firstElement;
     }
 };

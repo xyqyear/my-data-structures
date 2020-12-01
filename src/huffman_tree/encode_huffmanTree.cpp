@@ -7,7 +7,10 @@ void printCode(BasicBinaryTreeNode<char, int> *huffmanTree, char *code, int dept
     if (huffmanTree)
     {
         if (huffmanTree->getKey())
+        {
+            code[depth] = 0;
             cout << huffmanTree->getKey() << ": " << code << endl;
+        }
         code[depth] = '0';
         printCode(huffmanTree->getLeftChild(), code, depth + 1);
         code[depth] = '1';

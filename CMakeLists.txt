@@ -36,11 +36,40 @@ target_include_directories(
     )
 
 # tests
-add_executable(test_basicBinaryTree tests/test_basicBinaryTree.cpp)
-target_link_libraries(test_basicBinaryTree bin_tree)
+add_executable(
+    test_basicBinaryTree 
+    tests/test_basicBinaryTree.cpp
+    )
+target_link_libraries(
+    test_basicBinaryTree 
+    bin_tree
+    )
 
-add_executable(test_heap tests/test_heap.cpp)
-target_link_libraries(test_heap heap)
+add_executable(
+    test_heap 
+    tests/test_heap.cpp
+    )
+target_link_libraries(
+    test_heap 
+    heap
+    )
 
-add_executable(test_huffmanTree tests/test_huffmanTree.cpp)
-target_link_libraries(test_huffmanTree bin_tree heap huffman_tree)
+add_executable(
+    test_huffmanTree 
+    tests/test_huffmanTree.cpp
+    )
+target_link_libraries(
+    test_huffmanTree 
+    bin_tree heap 
+    huffman_tree
+    )
+
+add_executable(
+    printHuffmanTree 
+    app/printHuffmanTree.cpp
+    )
+target_link_libraries(
+    printHuffmanTree 
+    bin_tree 
+    heap huffman_tree
+    )
