@@ -97,8 +97,6 @@ public:
         heapElementArray[0] = heapElementArray[heapSize - 1];
         heapSize--;
         siftdown(0);
-        // debug
-        std::cout << "removed " << firstElement->getKey()  << " from heap" << std::endl;
         return firstElement;
     }
 };

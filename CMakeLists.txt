@@ -35,6 +35,17 @@ target_include_directories(
     include
     )
 
+add_library(
+    libbitio
+    src/bits/fileBitReader.cpp
+    src/bits/fileBitWriter.cpp
+)
+target_include_directories(
+    libbitio
+    PUBLIC
+    include
+)
+
 # tests
 add_executable(
     test_basicBinaryTree 
@@ -65,11 +76,20 @@ target_link_libraries(
     )
 
 add_executable(
-    printHuffmanTree 
-    app/printHuffmanTree.cpp
+    test_fileBitReaderAndWriter
+    tests/test_fileBitReaderAndWriter.cpp
+)
+target_link_libraries(
+    test_fileBitReaderAndWriter
+    libbitio
+)
+
+add_executable(
+    writeHuffmanTreeToFile 
+    app/writeHuffmanTreeToFile.cpp
     )
 target_link_libraries(
-    printHuffmanTree 
+    writeHuffmanTreeToFile 
     bin_tree 
     heap huffman_tree
     )
