@@ -67,8 +67,6 @@ target_link_libraries(
 add_executable(
     test_huffmanTree 
     tests/test_huffmanTree.cpp
-    app/simpleCompressor/get_huffman_code.hpp
-    app/simpleCompressor/get_huffman_code.cpp
     )
 target_link_libraries(
     test_huffmanTree 

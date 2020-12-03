@@ -16,4 +16,7 @@ public:
     bool readBit(int& bit);
     bool is_open();
     void close();
+    int tell();
+    void seek(int pos);
+    void clearError();
 };

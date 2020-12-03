@@ -4,7 +4,7 @@ using namespace std;
 
 FileBitReader::FileBitReader(const std::string &filename)
 {
-    fileStream.open(filename, ios::in | ios::app | ios::binary);
+    fileStream.open(filename, ios::app | ios::binary);
 }
 
 bool FileBitReader::readBit(int &bit)
@@ -29,4 +29,19 @@ bool FileBitReader::is_open()
 void FileBitReader::close()
 {
     fileStream.close();
+}
+
+int FileBitReader::tell()
+{
+    return fileStream.tellg();
+}
+
+void FileBitReader::seek(int pos)
+{
+    fileStream.seekg(pos);
+}
+
+void FileBitReader::clearError()
+{
+    fileStream.clear();
 }

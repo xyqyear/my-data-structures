@@ -1,13 +1,12 @@
 #include <iostream>
-#include "dataStructure/bin_tree/basicBinaryTree.hpp"
-#include "dataStructure/huffman_tree/huffmanTree.hpp"
-#include "huffman_encoder_decoder.hpp"
-#include "count_char.hpp"
+#include "compress.hpp"
+#include "decompress.hpp"
 
 using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    
+    compress("testI.txt", "test.huf");
+    decompress("test.huf", "testO.txt");
     return 0;
 }

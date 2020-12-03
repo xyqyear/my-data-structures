@@ -6,7 +6,7 @@
 
 ||different char count (n)|char & count array|bit length (m)|compressed data content|
 |------|-----|-----|-----|-----|
-|length|1    |5*n  |4    |m    |
+|length|1    |5*n  |4    |m/8  |
 
 - appeared char count
 

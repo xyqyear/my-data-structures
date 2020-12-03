@@ -16,4 +16,7 @@ public:
     bool is_open();
     void flush();
     void close();
+    int tell();
+    void seek(int pos);
+    void clearError();
 };

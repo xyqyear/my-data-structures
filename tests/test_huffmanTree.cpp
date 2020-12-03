@@ -2,7 +2,6 @@
 #include <string>
 #include "dataStructure/bin_tree/basicBinaryTree.hpp"
 #include "dataStructure/huffman_tree/huffmanTree.hpp"
-#include "../app/simpleCompressor/get_huffman_code.hpp"
 
 using namespace std;
 
@@ -24,16 +23,8 @@ int main(int argc, char const *argv[])
 
     BasicBinaryTreeNode<char, int> *huffmanTree = buildHuffmanTree(nodes, 5, 10);
 
-    string codeStorage[256];
+    string *codeStorage[256];
     char huffcode[64] = {0};
-
-    getHuffmanCode(huffmanTree, codeStorage, huffcode);
-
-    cout << "e: " << codeStorage['e'] << endl;
-    cout << "a: " << codeStorage['a'] << endl;
-    cout << "o: " << codeStorage['o'] << endl;
-    cout << "p: " << codeStorage['p'] << endl;
-    cout << "x: " << codeStorage['x'] << endl;
 
     delete huffmanTree;
     return 0;

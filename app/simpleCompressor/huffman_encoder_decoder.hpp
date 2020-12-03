@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <cassert>
@@ -16,16 +17,19 @@ public:
 class HuffmanFileEncoder : public HuffmanEncoderDecoderBase
 {
 private:
-    std::string *huffmanCode;
+    std::string **huffmanCode;
     FileBitWriter *fileBitWriter;
 
 public:
-    HuffmanFileEncoder(std::string huffmanCode[256], const std::string& filename);
+    HuffmanFileEncoder(std::string *huffmanCode[256], const std::string& filename);
     ~HuffmanFileEncoder();
     void putChar(char char2put);
     void flush();
     bool is_open();
     void close();
+    int tell();
+    void seek(int pos);
+    void clearError();
 };
 
 class HuffmanFileDecoder : public HuffmanEncoderDecoderBase
@@ -42,4 +46,7 @@ public:
     bool getChar(char &charBuffer);
     bool is_open();
     void close();
+    int tell();
+    void seek(int pos);
+    void clearError();
 };

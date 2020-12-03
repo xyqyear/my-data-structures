@@ -35,7 +35,7 @@ int main(int argc, char const *argv[])
 
     BasicBinaryTreeNode<char, int> *huffmanTree = buildHuffmanTree(binNodes, appearedCharCount, 256);
 
-    string codeStorage[256];
+    string *codeStorage[256] = {nullptr};
     char huffcode[64] = {0};
 
     getHuffmanCode(huffmanTree, codeStorage, huffcode);

@@ -4,7 +4,7 @@ using namespace std;
 
 FileBitWriter::FileBitWriter(const string &filename)
 {
-    fileStream.open(filename, ios::out | ios::binary | ios::app);
+    fileStream.open(filename, ios::app | ios::binary);
 }
 
 bool FileBitWriter::is_open()
@@ -37,4 +37,19 @@ void FileBitWriter::close()
 {
     flush();
     fileStream.close();
+}
+
+int FileBitWriter::tell()
+{
+    return fileStream.tellp();
+}
+
+void FileBitWriter::seek(int pos)
+{
+    fileStream.seekp(pos);
+}
+
+void FileBitWriter::clearError()
+{
+    fileStream.clear();
 }

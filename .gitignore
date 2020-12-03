@@ -1,2 +1,3 @@
 .vscode/
 build/
+tests/test_random_stuff.cpp
