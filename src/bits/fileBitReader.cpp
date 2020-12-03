@@ -7,16 +7,15 @@ FileBitReader::FileBitReader(const std::string &filename)
     fileStream.open(filename, ios::in | ios::app | ios::binary);
 }
 
-bool FileBitReader::readBit(int& bit)
+bool FileBitReader::readBit(int &bit)
 {
     if (bufferPointer == -1)
-    {   
-        if (fileStream.eof())
+    {
+        if (!fileStream.get(buffer))
             return false;
         bufferPointer = 7;
-        fileStream.get(buffer);
     }
-    
+
     bit = (buffer >> bufferPointer) & 1;
     bufferPointer--;
     return true;

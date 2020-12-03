@@ -25,8 +25,7 @@ target_include_directories(
     )
 
 add_library(
-    huffman_tree 
-    src/huffman_tree/encode_huffmanTree.cpp 
+    huffman_tree
     src/huffman_tree/huffmanTree.cpp
     )
 target_include_directories(
@@ -68,6 +67,8 @@ target_link_libraries(
 add_executable(
     test_huffmanTree 
     tests/test_huffmanTree.cpp
+    app/simpleCompressor/get_huffman_code.hpp
+    app/simpleCompressor/get_huffman_code.cpp
     )
 target_link_libraries(
     test_huffmanTree 
@@ -78,18 +79,45 @@ target_link_libraries(
 add_executable(
     test_fileBitReaderAndWriter
     tests/test_fileBitReaderAndWriter.cpp
-)
+    )
 target_link_libraries(
     test_fileBitReaderAndWriter
     libbitio
-)
+    )
 
 add_executable(
-    writeHuffmanTreeToFile 
-    app/writeHuffmanTreeToFile.cpp
+    test_count_char
+    tests/test_count_char.cpp
+    app/simpleCompressor/count_char.hpp
+    app/simpleCompressor/count_char.cpp
+    )
+
+add_executable(
+    test_huffman_encoder_decoder
+    tests/test_huffman_encoder_decoder.cpp
+    app/simpleCompressor/huffman_encoder_decoder.cpp
+    app/simpleCompressor/huffman_encoder_decoder.hpp
+    app/simpleCompressor/get_huffman_code.hpp
+    app/simpleCompressor/get_huffman_code.cpp
+    app/simpleCompressor/count_char.hpp
+    app/simpleCompressor/count_char.cpp
     )
 target_link_libraries(
-    writeHuffmanTreeToFile 
+    test_huffman_encoder_decoder
+    huffman_tree
+    bin_tree
+    libbitio
+    )
+
+aux_source_directory(app/simpleCompressor COMPRESSOR_DIR)
+add_executable(
+    simpleCompressor
+    ${COMPRESSOR_DIR}
+    )
+target_link_libraries(
+    simpleCompressor 
     bin_tree 
-    heap huffman_tree
+    heap
+    huffman_tree
+    libbitio
     )

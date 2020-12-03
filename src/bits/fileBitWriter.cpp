@@ -9,7 +9,7 @@ FileBitWriter::FileBitWriter(const string &filename)
 
 bool FileBitWriter::is_open()
 {
-    return fileStream.is_open(); 
+    return fileStream.is_open();
 }
 
 void FileBitWriter::writeBit(int bit)
