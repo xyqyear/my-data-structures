@@ -35,12 +35,12 @@ target_include_directories(
     )
 
 add_library(
-    libbitio
+    bitio
     src/bits/fileBitReader.cpp
     src/bits/fileBitWriter.cpp
 )
 target_include_directories(
-    libbitio
+    bitio
     PUBLIC
     include
 )
@@ -80,7 +80,7 @@ add_executable(
     )
 target_link_libraries(
     test_fileBitReaderAndWriter
-    libbitio
+    bitio
     )
 
 add_executable(
@@ -104,9 +104,10 @@ target_link_libraries(
     test_huffman_encoder_decoder
     huffman_tree
     bin_tree
-    libbitio
+    bitio
     )
 
+# apps
 aux_source_directory(app/simpleCompressor COMPRESSOR_DIR)
 add_executable(
     simpleCompressor
@@ -117,5 +118,5 @@ target_link_libraries(
     bin_tree 
     heap
     huffman_tree
-    libbitio
+    bitio
     )
