@@ -105,10 +105,10 @@ void compressMenu()
     string destFileName;
     cout << "请输入原文件路径" << endl;
     cout << "> ";
-    cin >> srcFileName;
+    getline(cin, srcFileName);
     cout << "请输入要保存的文件的路径" << endl;
     cout << "> ";
-    cin >> destFileName;
+    getline(cin, destFileName);
 
     if (compress(srcFileName, destFileName))
     {
@@ -132,12 +132,12 @@ void decompressMenu()
 {
     string srcFileName;
     string destFileName;
-    cout << "请输入要解压的文件的目录" << endl;
+    cout << "请输入要解压的文件的路径" << endl;
     cout << "> ";
-    cin >> srcFileName;
+    getline(cin, srcFileName);
     cout << "请输入要保存的文件的路径" << endl;
     cout << "> ";
-    cin >> destFileName;
+    getline(cin, destFileName);
 
     if (decompress(srcFileName, destFileName))
         cout << "解压成功！" << endl;
