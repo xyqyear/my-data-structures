@@ -75,7 +75,12 @@ HuffmanFileDecoder::~HuffmanFileDecoder()
 
 bool HuffmanFileDecoder::getCharHelper(BasicBinaryTreeNode<char, int> *currentNode, char &charBuffer)
 {
-    if (currentNode->getKey() == 0)
+    if (currentNode->isLeaf())
+    {
+        charBuffer = currentNode->getKey();
+        return true;
+    }
+    else
     {
         bitLength--;
         if(!fileBitReader->readBit(bitBuffer))
@@ -88,17 +93,22 @@ bool HuffmanFileDecoder::getCharHelper(BasicBinaryTreeNode<char, int> *currentNo
             return getCharHelper(currentNode->getRightChild(), charBuffer);
         }
     }
-    else
-    {
-        charBuffer = currentNode->getKey();
-        return true;
-    }
 }
 
 bool HuffmanFileDecoder::getChar(char &charBuffer)
 {
     if (bitLength > 0)
-        return getCharHelper(huffmanTree, charBuffer);
+    {
+        // if the tree has only one node
+        if (huffmanTree->isLeaf())
+        {
+            bitLength--;
+            charBuffer = huffmanTree->getKey();
+            return true;
+        }
+        else
+            return getCharHelper(huffmanTree, charBuffer);
+    }
     else
         return false;
 }

@@ -1,3 +1,4 @@
 .vscode/
 build/
+release/
 tests/test_random_stuff.cpp

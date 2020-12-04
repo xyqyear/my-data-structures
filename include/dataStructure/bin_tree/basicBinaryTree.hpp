@@ -48,7 +48,7 @@ public:
     }
     inline bool isLeaf()
     {
-        return leftChild == rightChild == nullptr;
+        return leftChild == nullptr && rightChild == nullptr;
     }
     inline BasicBinaryTreeNode *getLeftChild()
     {

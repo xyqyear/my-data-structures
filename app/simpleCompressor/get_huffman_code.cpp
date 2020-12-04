@@ -5,14 +5,14 @@ using namespace std;
 void getHuffmanCode(BasicBinaryTreeNode<char, int> *huffmanTree, string *codeStorage[256], char code[100], int depth)
 {
     // if the tree has only one node
-    if (depth == 0 && huffmanTree && huffmanTree->getKey())
+    if (depth == 0 && huffmanTree && huffmanTree->isLeaf())
     {
         codeStorage[huffmanTree->getKey()] = new string("0");
         return;
     }
     if (huffmanTree)
     {
-        if (huffmanTree->getKey())
+        if (huffmanTree->isLeaf())
         {
             codeStorage[huffmanTree->getKey()] = new string(code, depth);
         }
