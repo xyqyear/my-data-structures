@@ -8,16 +8,10 @@ bool compress(const std::string &srcFileName, const std::string &destFileName)
     ofstream destFileStream(destFileName, ios::binary);
 
     if (!srcFileStream.is_open())
-    {
-        cout << "error while opening the compressed file." << endl;
-        exit(0);
-    }
+        return false;
 
     if (!destFileStream.is_open())
-    {
-        cout << "error while opeing the destination file." << endl;
-        exit(0);
-    }
+        return false;
 
     // build huffman tree and get huffman code
     int charCount[256] = {0};
@@ -53,10 +47,8 @@ bool compress(const std::string &srcFileName, const std::string &destFileName)
     // 4nd field - compressed data
     HuffmanFileEncoder huffmanFileEncoder(codeStorage, destFileName);
     if (!huffmanFileEncoder.is_open())
-    {
-        cout << "error while opening the destination file." << endl;
-        exit(0);
-    }
+        return false;
+
     char originalFileCharBuffer;
     while (srcFileStream.get(originalFileCharBuffer))
     {

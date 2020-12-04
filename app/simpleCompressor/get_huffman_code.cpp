@@ -4,12 +4,17 @@ using namespace std;
 
 void getHuffmanCode(BasicBinaryTreeNode<char, int> *huffmanTree, string *codeStorage[256], char code[100], int depth)
 {
+    // if the tree has only one node
+    if (depth == 0 && huffmanTree && huffmanTree->getKey())
+    {
+        codeStorage[huffmanTree->getKey()] = new string("0");
+        return;
+    }
     if (huffmanTree)
     {
         if (huffmanTree->getKey())
         {
             codeStorage[huffmanTree->getKey()] = new string(code, depth);
-            // cout << huffmanTree->getKey() << ": " << code << endl;
         }
         code[depth] = '0';
         getHuffmanCode(huffmanTree->getLeftChild(), codeStorage, code, depth + 1);
