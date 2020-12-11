@@ -8,10 +8,18 @@ bool compress(const std::string &srcFileName, const std::string &destFileName)
     ofstream destFileStream(destFileName, ios::binary);
 
     if (!srcFileStream.is_open())
+    {
+        srcFileStream.close();
+        destFileStream.close();
         return false;
+    }
 
     if (!destFileStream.is_open())
+    {
+        srcFileStream.close();
+        destFileStream.close();
         return false;
+    }
 
     // build huffman tree and get huffman code
     int charCount[256] = {0};
@@ -31,7 +39,7 @@ bool compress(const std::string &srcFileName, const std::string &destFileName)
             destFileStream.write((char *)&charCount[i], 4);
         }
     }
-    
+
     // 3rd field - the length of the compressed data
     int lengthOfCompressedData = 0;
     for (size_t i = 0; i < 256; i++)
@@ -47,14 +55,25 @@ bool compress(const std::string &srcFileName, const std::string &destFileName)
     // 4nd field - compressed data
     HuffmanFileEncoder huffmanFileEncoder(codeStorage, destFileName);
     if (!huffmanFileEncoder.is_open())
+    {
+        delete huffmanTree;
+        for (size_t i = 0; i < 256; i++)
+        {
+            if (codeStorage[i])
+            {
+                delete codeStorage[i];
+            }
+        }
+        huffmanFileEncoder.close();
+        srcFileStream.close();
         return false;
+    }
 
     char originalFileCharBuffer;
     while (srcFileStream.get(originalFileCharBuffer))
     {
         huffmanFileEncoder.putChar(originalFileCharBuffer);
     }
-    int contentBitLength = huffmanFileEncoder.getBitLength();
     huffmanFileEncoder.close();
 
     // clean up

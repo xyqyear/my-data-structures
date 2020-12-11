@@ -11,7 +11,7 @@ void decompressMenu();
 
 int main(int argc, char const *argv[])
 {
-    cout << "æ¬¢è¿Žä½¿ç”¨huffmanç¼–ç å™¨:D" << endl;
+    cout << "»¶Ó­Ê¹ÓÃhuffman±àÂëÆ÷:D" << endl;
     while (true)
     {
         printMenu();
@@ -30,7 +30,7 @@ int main(int argc, char const *argv[])
             decompressMenu();
             break;
         default:
-            cout << "è¯·è¾“å…¥æ­£ç¡®çš„é€‰é¡¹ï¼" << endl;
+            cout << "ÇëÊäÈëÕýÈ·µÄÑ¡Ïî£¡" << endl;
             break;
         }
     }
@@ -41,16 +41,16 @@ int main(int argc, char const *argv[])
 
 void printMenu()
 {
-    cout << "è¯·é€‰æ‹©ä½ è¦ä½¿ç”¨çš„åŠŸèƒ½ï¼š" << endl;
-    cout << "1: ç»Ÿè®¡è¾“å…¥æ–‡ä»¶å­—ç¬¦é¢‘åº¦å¹¶å¯¹å…¶è¿›è¡Œå“ˆå¤«æ›¼ç¼–ç " << endl;
-    cout << "2: å¯¹æ•´ä¸ªæ–‡ä»¶è¿›è¡Œç¼–ç å¹¶ä¿å­˜ç¼–ç åŽçš„ç»“æžœ" << endl;
-    cout << "3: è§£ç æ–‡ä»¶" << endl;
+    cout << "ÇëÑ¡ÔñÄãÒªÊ¹ÓÃµÄ¹¦ÄÜ£º" << endl;
+    cout << "1: Í³¼ÆÊäÈëÎÄ¼þ×Ö·ûÆµ¶È²¢¶ÔÆä½øÐÐ¹þ·òÂü±àÂë" << endl;
+    cout << "2: ¶ÔÕû¸öÎÄ¼þ½øÐÐ±àÂë²¢±£´æ±àÂëºóµÄ½á¹û" << endl;
+    cout << "3: ½âÂëÎÄ¼þ" << endl;
     cout << "> ";
 }
 
 void countFileMenu()
 {
-    cout << "è¯·è¾“å…¥åŽŸæ–‡ä»¶çš„è·¯å¾„: " << endl;
+    cout << "ÇëÊäÈëÔ­ÎÄ¼þµÄÂ·¾¶: " << endl;
     cout << "> ";
     string filePath;
     getline(cin, filePath);
@@ -58,8 +58,8 @@ void countFileMenu()
     ifstream srcFileStream(filePath, ios::binary);
 
     if (!srcFileStream.is_open()) {
-        cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
-        return
+        cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+        return;
     }
 
     int charCount[256] = {0};
@@ -67,8 +67,8 @@ void countFileMenu()
     int differentCharCount = 0;
     BasicBinaryTreeNode<char, int> *huffmanTree = countFile(srcFileStream, charCount, codeStorage, differentCharCount);
 
-    cout << "æ¯ä¸ªå­—ç¬¦çš„ç¼–ç åŠå…¶é¢‘åº¦å¦‚ä¸‹ï¼š" << endl;
-    cout << "å­—ç¬¦\t\t\té¢‘åº¦\t\t\tå“ˆå¤«æ›¼ç¼–ç " << endl;
+    cout << "Ã¿¸ö×Ö·ûµÄ±àÂë¼°ÆäÆµ¶ÈÈçÏÂ£º" << endl;
+    cout << "×Ö·û\t\t\tÆµ¶È\t\t\t¹þ·òÂü±àÂë" << endl;
     for (size_t i = 0; i < 256; i++)
     {
         if (charCount[i])
@@ -109,44 +109,44 @@ void compressMenu()
 {
     string srcFileName;
     string destFileName;
-    cout << "è¯·è¾“å…¥åŽŸæ–‡ä»¶è·¯å¾„" << endl;
+    cout << "ÇëÊäÈëÔ­ÎÄ¼þÂ·¾¶" << endl;
     cout << "> ";
     getline(cin, srcFileName);
-    cout << "è¯·è¾“å…¥è¦ä¿å­˜çš„æ–‡ä»¶çš„è·¯å¾„" << endl;
+    cout << "ÇëÊäÈëÒª±£´æµÄÎÄ¼þµÄÂ·¾¶" << endl;
     cout << "> ";
     getline(cin, destFileName);
 
     if (compress(srcFileName, destFileName))
     {
-        cout << "åŽ‹ç¼©æˆåŠŸï¼" << endl;
-        cout << "åŽ‹ç¼©çŽ‡ä¸º";
+        cout << "Ñ¹Ëõ³É¹¦£¡" << endl;
+        cout << "Ñ¹ËõÂÊÎª";
         ifstream srcFileStream(srcFileName, ios::ate | ios::binary);
         ifstream destFileStream(destFileName, ios::ate | ios::binary);
 
         int srcFileSize = srcFileStream.tellg(), destFileSize = destFileStream.tellg();
 
-        cout << (double) destFileSize / srcFileSize * 100 << "% (å¦‚æžœåŽŸæ–‡ä»¶è¿‡å°å¯èƒ½å¯¼è‡´è¶…è¿‡100%çš„åŽ‹ç¼©çŽ‡)" << endl;
+        cout << (double) destFileSize / srcFileSize * 100 << "% (Èç¹ûÔ­ÎÄ¼þ¹ýÐ¡¿ÉÄÜµ¼ÖÂ³¬¹ý100%µÄÑ¹ËõÂÊ)" << endl;
 
         srcFileStream.close();
         destFileStream.close();
     }
     else
-        cout << "åŽ‹ç¼©å¤±è´¥ï¼" << endl;
+        cout << "Ñ¹ËõÊ§°Ü£¡" << endl;
 }
 
 void decompressMenu()
 {
     string srcFileName;
     string destFileName;
-    cout << "è¯·è¾“å…¥è¦è§£åŽ‹çš„æ–‡ä»¶çš„è·¯å¾„" << endl;
+    cout << "ÇëÊäÈëÒª½âÑ¹µÄÎÄ¼þµÄÂ·¾¶" << endl;
     cout << "> ";
     getline(cin, srcFileName);
-    cout << "è¯·è¾“å…¥è¦ä¿å­˜çš„æ–‡ä»¶çš„è·¯å¾„" << endl;
+    cout << "ÇëÊäÈëÒª±£´æµÄÎÄ¼þµÄÂ·¾¶" << endl;
     cout << "> ";
     getline(cin, destFileName);
 
     if (decompress(srcFileName, destFileName))
-        cout << "è§£åŽ‹æˆåŠŸï¼" << endl;
+        cout << "½âÑ¹³É¹¦£¡" << endl;
     else
-        cout << "è§£åŽ‹å¤±è´¥." << endl;
+        cout << "½âÑ¹Ê§°Ü." << endl;
 }

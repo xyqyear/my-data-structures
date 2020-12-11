@@ -9,14 +9,16 @@ bool decompress(const std::string &srcFileName, const std::string &destFileName)
 
     if (!srcFileStream.is_open())
     {
-        cout << "error while opening the compressed file." << endl;
-        exit(0);
+        srcFileStream.close();
+        destFileStream.close();
+        return false;
     }
 
     if (!destFileStream.is_open())
     {
-        cout << "error while opeing the destination file." << endl;
-        exit(0);
+        srcFileStream.close();
+        destFileStream.close();
+        return false;
     }
 
     char differentCharCount;
@@ -37,13 +39,15 @@ bool decompress(const std::string &srcFileName, const std::string &destFileName)
 
     int dataPos = srcFileStream.tellg();
     srcFileStream.close();
-    BasicBinaryTreeNode<char, int> * huffmanTree = buildHuffmanTree(binNodes, differentCharCount, 256);
+    BasicBinaryTreeNode<char, int> *huffmanTree = buildHuffmanTree(binNodes, differentCharCount, 256);
 
     HuffmanFileDecoder huffmanFileDecoder(huffmanTree, srcFileName, compressedDataBitLength);
     if (!huffmanFileDecoder.is_open())
     {
-        cout << "error while opening the compressed file." << endl;
-        exit(0);
+        huffmanFileDecoder.close();
+        destFileStream.close();
+        delete huffmanTree;
+        return false;
     }
     huffmanFileDecoder.seek(dataPos);
 
